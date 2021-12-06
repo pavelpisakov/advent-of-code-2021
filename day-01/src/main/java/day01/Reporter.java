@@ -7,7 +7,7 @@ public class Reporter {
         final Scanner scanner = new Scanner();
         final int[] report = scanner.performSonarSweep();
 
-        final DepthAnalyzer depthAnalyzer = new DepthAnalyzer();
+        final DepthAnalyzer depthAnalyzer = new ThreeMeasurementSlidingWindowDepthAnalyzer();
         System.out.println(depthAnalyzer.analyze(report));
 
     }
