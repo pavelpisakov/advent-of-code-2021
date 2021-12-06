@@ -1,12 +1,12 @@
 package day02.command;
 
-import day02.Movable;
+import day02.Submarine;
 
-public record DownCommand(Movable movable, int units) implements MoveCommand {
+public record DownCommand(Submarine submarine, int units) implements MoveCommand {
 
     @Override
     public void execute() {
-        movable.down(this.units);
+        submarine.down(this.units);
     }
 
 }

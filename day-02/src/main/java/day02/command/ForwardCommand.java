@@ -1,12 +1,12 @@
 package day02.command;
 
-import day02.Movable;
+import day02.Submarine;
 
-public record ForwardCommand(Movable movable, int units) implements MoveCommand {
+public record ForwardCommand(Submarine submarine, int units) implements MoveCommand {
 
     @Override
     public void execute() {
-        movable.forward(this.units);
+        submarine.forward(this.units);
     }
 
 }

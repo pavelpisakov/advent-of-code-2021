@@ -1,24 +1,22 @@
 package day02;
 
-public class Submarine implements Movable {
+public interface Submarine {
 
-    private int horizontalPosition = 0;
-    private int depth = 0;
+    /**
+     * Forward X increases the horizontal position by X units.
+     */
+    void forward(int units);
 
-    public void forward(int units) {
-        horizontalPosition += units;
-    }
+    /**
+     * Down X increases the depth by X units.
+     */
+    void down(int units);
 
-    public void down(int units) {
-        depth += units;
-    }
+    /**
+     * Up X decreases the depth by X units.
+     */
+    void up(int units);
 
-    public void up(int units) {
-        depth -= units;
-    }
-
-    public int coordinate() {
-        return horizontalPosition * depth;
-    }
+    int coordinate();
 
 }

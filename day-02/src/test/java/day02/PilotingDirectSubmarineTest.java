@@ -1,12 +1,11 @@
 package day02;
 
 import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ControllerTest {
+class PilotingDirectSubmarineTest {
 
     @Test
     void testInputData_mustEqualTo_150() {
@@ -19,7 +18,8 @@ class ControllerTest {
                 new CommandDTO("down", 8),
                 new CommandDTO("forward", 2)
         );
-        final Submarine submarine = new Submarine();
+
+        final Submarine submarine = new DirectSubmarine();
 
         Controller controller = new Controller(terminal, submarine);
         controller.pilot();
