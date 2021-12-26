@@ -1,10 +1,7 @@
 package day01;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Performs sonar sweep and provides a report.
@@ -24,17 +21,7 @@ public class Scanner {
         final var inputStreamReader = new InputStreamReader(stream);
         final var bufferedReader = new BufferedReader(inputStreamReader);
 
-        final List<Integer> input = new LinkedList<>();
-        String line;
-        try {
-            while ((line = bufferedReader.readLine()) != null) {
-                input.add(Integer.parseInt(line));
-            }
-        } catch (IOException exception) {
-            throw new Error("Can't parse the data");
-        }
-
-        return input.stream().mapToInt(i -> i).toArray();
+        return bufferedReader.lines().mapToInt(Integer::parseInt).toArray();
 
     }
 
