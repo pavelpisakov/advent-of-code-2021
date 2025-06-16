@@ -35,12 +35,16 @@ public class Vector {
         this.y += vector.y;
     }
 
+    // Horizontal line has the same Y coordinate while vertical line has the
+    // same X coordinate. The original implementation mixed these up which was
+    // confusing, even though the current code relied only on the combined
+    // result.
     public boolean isHorizontal(Vector end) {
-        return this.x == end.x;
+        return this.y == end.y;
     }
 
     public boolean isVertical(Vector end) {
-        return this.y == end.y;
+        return this.x == end.x;
     }
 
     @Override

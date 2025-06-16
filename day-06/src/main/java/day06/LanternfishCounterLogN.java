@@ -6,20 +6,17 @@ import java.util.Map;
 
 public class LanternfishCounterLogN {
 
-    // number, total
-    private static final Map<Integer, Long> cache = new HashMap<>();
+    // number-days -> total. The number of spawned fishes depends on both the
+    // starting number and the number of days left, therefore we have to cache
+    // based on both of them.
+    private static final Map<String, Long> cache = new HashMap<>();
 
     public long countAll(String input, final int days) {
         return Arrays.stream(input.split(","))
                 .map(Integer::valueOf)
-                .map(number -> {
-                    if (cache.containsKey(number)) {
-                        return cache.get(number);
-                    }
-                    long count = count(number, days);
-                    cache.put(number, count);
-                    return count;
-                })
+                // delegate caching to the count method which is aware of the
+                // number of days
+                .map(number -> count(number, days))
                 .reduce(Long::sum)
                 .orElseThrow(() -> new Error("No values"));
     }
@@ -29,7 +26,12 @@ public class LanternfishCounterLogN {
     // I may use the same function in recursion for spawns
     public long count(final int number, final int days) {
 
-        // 1 is for the initial, for which we are counting
+        String key = number + ":" + days;
+        if (cache.containsKey(key)) {
+            return cache.get(key);
+        }
+
+        // 1 is for the initial fish for which we are counting
         long total = 1;
 
         // I need to know when the 1st child is spawned
@@ -43,6 +45,7 @@ public class LanternfishCounterLogN {
             remainDays -= 7;
         }
 
+        cache.put(key, total);
         return total;
     }
 
